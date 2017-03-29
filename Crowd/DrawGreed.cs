@@ -11,6 +11,8 @@ namespace Crowd
 {
     static class DrawGreed
     {
+
+
         static Cell[,] cells;
 
         static List<Person> people = new List<Person>();
@@ -42,15 +44,11 @@ namespace Crowd
             int i = (int)((x - 25) / 40);
             int j = (int)((y - 15) / 40);
 
-            System.Windows.MessageBox.Show("Clicked " + i + "," + j);
-
             if (cells[i, j].isEmpty)
             {
                 Person currentPerson = new Person(cells[i, j], canvas);
                 people.Add(currentPerson);
                 cells[i, j].isEmpty = false;
-
-                System.Windows.MessageBox.Show("Added");
 
                 PathFinding(currentPerson, canvas);
             }
@@ -92,7 +90,6 @@ namespace Crowd
                 canvas.Children.Remove(currentPerson.body);
                 currentPerson.cell.isEmpty = true;
                 people.Remove(currentPerson);
-                System.Windows.MessageBox.Show("Exit");
                 return true;
             }
             else return false;

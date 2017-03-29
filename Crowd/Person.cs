@@ -11,11 +11,19 @@ namespace Crowd
 {
     class Person
     {
+        public System.Timers.Timer delayTimer;
+        int timeValue;
+
+        public int TimeValue
+        { get { return timeValue; }
+            private set { timeValue = value; }
+        }
+
         const int defaultMarginTop = 15;
         const int defaultMarginLeft = 25;
 
         public Ellipse body;
-        
+
         int i;
         int j;
 
@@ -27,7 +35,8 @@ namespace Crowd
             set
             {
                 body.Margin = new System.Windows.Thickness(GetX(value), GetY(j), 0, 0);
-                i = value; }
+                i = value;
+            }
         }
 
         public int J
@@ -53,8 +62,22 @@ namespace Crowd
             body.StrokeThickness = 0;
             body.Margin = new System.Windows.Thickness(x, y, 0, 0);
             canvas.Children.Add(body);
+
+            delayTimer = new System.Timers.Timer(150);
+            delayTimer.Elapsed += delayTimer_Elapsed;
+            delayTimer.Start();
         }
-         
+
+        ~Person()
+        {
+            delayTimer.Stop();
+        }
+
+        void delayTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            timeValue++;
+        }
+
         private int GetX(int i)
         {
             return defaultMarginLeft + 40 * i;
@@ -65,11 +88,13 @@ namespace Crowd
         }
         private int GetI(int x)
         {
-            return (x-defaultMarginLeft)/40;
+            return (x - defaultMarginLeft) / 40;
         }
         private int GetJ(int y)
         {
             return (y - defaultMarginTop) / 40;
         }
+
+        
     }
 }
