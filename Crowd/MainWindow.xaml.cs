@@ -49,7 +49,7 @@ namespace Crowd
         {
             if (created)
             {
-                DrawGreed.Add_Remove_Person(e.GetPosition(canvas).X, e.GetPosition(canvas).Y, canvas);
+                DrawGreed.Add_Person(e.GetPosition(canvas).X, e.GetPosition(canvas).Y, canvas);
             }
         }
     }

@@ -19,6 +19,8 @@ namespace Crowd
         int i;
         int j;
 
+        public Cell cell;
+
         public int I
         {
             get { return i; }
@@ -38,10 +40,11 @@ namespace Crowd
             }
         }
 
-        public Person(int i,int j, Canvas canvas)
+        public Person(Cell cell, Canvas canvas)
         {
-            this.i = i;
-            this.j = j;
+            this.cell = cell;
+            this.i = cell.i;
+            this.j = cell.j;
             int x = GetX(i);
             int y = GetY(j);
             body = new Ellipse();

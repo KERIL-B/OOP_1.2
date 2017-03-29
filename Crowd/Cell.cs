@@ -21,8 +21,8 @@ namespace Crowd
         public int i;
         public int j;
 
-        public Person person;
         public bool haveDoor;
+        public bool isEmpty;
 
         public Cell(int i, int j)
         {
@@ -36,15 +36,18 @@ namespace Crowd
             rect.Margin = new System.Windows.Thickness(x, y, 0, 0);
             rect.Stroke = Brushes.DeepSkyBlue;
 
-            doorRect = new Rectangle();
-            doorRect.Height = 10;
-            doorRect.Width = width;
-            doorRect.Margin = new System.Windows.Thickness(x, y - 10, 0, 0);
-            doorRect.Fill = Brushes.Black;
-
-            haveDoor = false;
+            if ((j == 0) && (i % 5 == 0))
+            {
+                haveDoor = true;
+                doorRect = new Rectangle();
+                doorRect.Height = 10;
+                doorRect.Width = width;
+                doorRect.Margin = new System.Windows.Thickness(x, y - 10, 0, 0);
+                doorRect.Fill = Brushes.Black;
+            }
+            else
+                haveDoor = false;
+            isEmpty = true;
         }
-
-        public bool isEmpty { get { return person == null; } }
     }
 }
